@@ -1,0 +1,108 @@
+.machine-table-container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .table-container h2 {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    color: #333;
+  }
+  
+  .contenu-form {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-bottom: 30px;
+  }
+  
+  .contenu-form input,
+  .contenu-form select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .contenu-form button {
+    margin-top: 10px;
+    margin-right: 10px;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .contenu-form button:hover {
+    background-color: #0056b3;
+  }
+  
+  .machines-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .machine-table th,
+  .machine-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .machine-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  .machine-table td button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .machine-table td button:hover {
+    opacity: 0.9;
+  }
+  
+  .btn-declasser {
+    background-color: #ff9800;
+    color: white;
+  }
+  
+  .btn-declasser:hover {
+    background-color: #e68900;
+  }
+  
+  /* Statut label colors */
+  .statut-label.en_service {
+    color: green;
+    font-weight: bold;
+  }
+  
+  .statut-label.en_panne {
+    color: red;
+    font-weight: bold;
+  }
+  
+  .statut-label.en_attente {
+    color: orange;
+    font-weight: bold;
+  }
+  
+  .statut-label.declassee {
+    color: gray;
+    font-style: italic;
+  }
+  
+  .no-machine-row {
+    text-align: center;
+    color: #888;
+    font-style: italic;
+  }

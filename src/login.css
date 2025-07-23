@@ -1,0 +1,62 @@
+.login-container {
+  max-width: 400px;
+  margin: 5rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.login-container h2 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+}
+
+.login-container input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border 0.3s ease;
+}
+
+.login-container input:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+.login-container button {
+  width: 100%;
+  padding: 12px;
+  background-color: #3498db;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.login-container button:hover {
+  background-color: #2980b9;
+}
+
+.login-container p {
+  text-align: center;
+  margin-top: 1rem;
+  color: red;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+@media screen and (max-width: 480px) {
+  .login-container {
+    margin: 2rem 1rem;
+    padding: 1.5rem;
+  }
+}
