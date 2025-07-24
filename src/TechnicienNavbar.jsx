@@ -14,6 +14,7 @@ const TechnicienNavbar = () => {
         <li><Link to="/technicien/stock">Stock</Link></li>
         <li><Link to="/technicien/produit">Produits utilisés</Link></li>
         <li><Link to="/technicien/entretien">Entretien</Link></li>
+        <li><Link to="/technicien/techniciens">Technicien</Link></li>
       </ul>
     </nav>
   );
