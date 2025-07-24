@@ -23,9 +23,9 @@ function SuivieVidangeForm() {
   const chargerDonnees = async () => {
     try {
       const [resMachines, resStocks, resSuivies] = await Promise.all([
-        axios.get("http://localhost:8080/api/machine"),
-        axios.get("http://localhost:8080/api/stock"),
-        axios.get("http://localhost:8080/api/suivieVidange")
+        axios.get(`${process.env.REACT_APP_API_URL}/api/machine`),
+        axios.get(`${process.env.REACT_APP_API_URL}/api/stock`),
+        axios.get(`${process.env.REACT_APP_API_URL}/api/suivieVidange`)
       ]);
       setMachines(resMachines.data);
       setStocks(resStocks.data);
@@ -62,8 +62,8 @@ function SuivieVidangeForm() {
     };
 
     const url = editId
-      ? `http://localhost:8080/api/suivieVidange/${editId}`
-      : `http://localhost:8080/api/suivieVidange`;
+      ? `${process.env.REACT_APP_API_URL}/api/suivieVidange/${editId}`
+      : `${process.env.REACT_APP_API_URL}/api/suivieVidange`;
     const method = editId ? 'put' : 'post';
 
     try {
@@ -105,7 +105,7 @@ function SuivieVidangeForm() {
   const handleDelete = async (id) => {
     if (!window.confirm("Supprimer cette suivie ?")) return;
     try {
-      await axios.delete(`http://localhost:8080/api/suivieVidange/${id}/desactiver`);
+      await axios.delete(`${process.env.REACT_APP_API_URL}/api/suivieVidange/${id}/desactiver`);
       alert("Supprimée !");
       chargerDonnees();
     } catch (err) {

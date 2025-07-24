@@ -6,7 +6,7 @@ function AfficherProduit(){
     afficherProduit();
   },[]);
   const afficherProduit=()=>{
-    fetch("http://localhost:8080/api/produit")
+    fetch(`${process.env.REACT_APP_API_URL}/api/produit`)
     .then(res=>res.json())
     .then(data => {setProduit(data);console.log(data)})
     .catch(err =>console.log("erreur lors de l'affichage des Produits Utilisé:",err));

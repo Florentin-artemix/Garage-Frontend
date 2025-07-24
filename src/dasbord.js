@@ -29,15 +29,15 @@ function Dashboard() {
   }, []);
 
   const chargerToutesLesDonnees = () => {
-    fetch("http://localhost:8080/api/technicien").then(r => r.json()).then(setTechniciens);
-    fetch("http://localhost:8080/api/machine").then(r => r.json()).then(setMachines);
-    fetch("http://localhost:8080/api/machine/declassees").then(r => r.json()).then(setMachinesDeclassees);
-    fetch("http://localhost:8080/api/intervention").then(r => r.json()).then(setInterventions);
-    fetch("http://localhost:8080/api/entretien").then(r => r.json()).then(setEntretiens);
-    fetch("http://localhost:8080/api/travail").then(r => r.json()).then(setTravaux);
-    fetch("http://localhost:8080/api/produit").then(r => r.json()).then(setProduits);
-    fetch("http://localhost:8080/api/suivieVidange").then(r => r.json()).then(setVidanges);
-    fetch("http://localhost:8080/api/historique")
+    fetch(`${process.env.REACT_APP_API_URL}/api/technicien`).then(r => r.json()).then(setTechniciens);
+    fetch(`${process.env.REACT_APP_API_URL}/api/machine`).then(r => r.json()).then(setMachines);
+    fetch(`${process.env.REACT_APP_API_URL}/api/machine/declassees`).then(r => r.json()).then(setMachinesDeclassees);
+    fetch(`${process.env.REACT_APP_API_URL}/api/intervention`).then(r => r.json()).then(setInterventions);
+    fetch(`${process.env.REACT_APP_API_URL}/api/entretien`).then(r => r.json()).then(setEntretiens);
+    fetch(`${process.env.REACT_APP_API_URL}/api/travail`).then(r => r.json()).then(setTravaux);
+    fetch(`${process.env.REACT_APP_API_URL}/api/produit`).then(r => r.json()).then(setProduits);
+    fetch(`${process.env.REACT_APP_API_URL}/api/suivieVidange`).then(r => r.json()).then(setVidanges);
+    fetch(`${process.env.REACT_APP_API_URL}/api/historique`)
       .then(r => r.json())
       .then(data => {
         const deuxJours = 2 * 24 * 60 * 60 * 1000;
@@ -48,13 +48,13 @@ function Dashboard() {
         });
         setHistoriques(recents);
       });
-    fetch("http://localhost:8080/api/technicien/desactiver").then(r => r.json()).then(setTechniciensDeclassees);
-    fetch("http://localhost:8080/api/entretien/desactiver").then(r => r.json()).then(setEntretiensDeclassees);
-    fetch("http://localhost:8080/api/intervention/desactiver").then(r => r.json()).then(setInterventionsDeclassees);
-    fetch("http://localhost:8080/api/travail/desactiver").then(r => r.json()).then(setTravauxDeclassees);
-    fetch("http://localhost:8080/api/produit/desactiver").then(r => r.json()).then(setProduitsDeclassees);
-    fetch("http://localhost:8080/api/suivieVidange/desactiver").then(r => r.json()).then(setSuivieVidangeDeclassees);
-    fetch("http://localhost:8080/api/stock/desactiver").then(r => r.json()).then(setStocksDeclassees);
+    fetch(`${process.env.REACT_APP_API_URL}/api/technicien/desactiver`).then(r => r.json()).then(setTechniciensDeclassees);
+    fetch(`${process.env.REACT_APP_API_URL}/api/entretien/desactiver`).then(r => r.json()).then(setEntretiensDeclassees);
+    fetch(`${process.env.REACT_APP_API_URL}/api/intervention/desactiver`).then(r => r.json()).then(setInterventionsDeclassees);
+    fetch(`${process.env.REACT_APP_API_URL}/api/travail/desactiver`).then(r => r.json()).then(setTravauxDeclassees);
+    fetch(`${process.env.REACT_APP_API_URL}/api/produit/desactiver`).then(r => r.json()).then(setProduitsDeclassees);
+    fetch(`${process.env.REACT_APP_API_URL}/api/suivieVidange/desactiver`).then(r => r.json()).then(setSuivieVidangeDeclassees);
+    fetch(`${process.env.REACT_APP_API_URL}/api/stock/desactiver`).then(r => r.json()).then(setStocksDeclassees);
   };
 
   const heuresParTechnicien = {};
@@ -89,9 +89,9 @@ function Dashboard() {
 
 
   function validerIntervention(id) {
-    fetch(`http://localhost:8080/api/intervention/${id}/valider`, { method: "PUT" })
+    fetch(`${process.env.REACT_APP_API_URL}/api/intervention/${id}/valider`, { method: "PUT" })
       .then(() => {
-        fetch("http://localhost:8080/api/intervention").then(res => res.json()).then(setInterventions);
+        fetch(`${process.env.REACT_APP_API_URL}/api/intervention`).then(res => res.json()).then(setInterventions);
       })
       .catch(err => console.error("Erreur de validation :", err));
   }

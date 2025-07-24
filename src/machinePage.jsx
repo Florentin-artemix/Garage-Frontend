@@ -17,7 +17,7 @@ const MachineTable = () => {
 
   const fetchMachines = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/api/machine');
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/machine`);
       setMachines(res.data);
     } catch (err) {
       console.error('Erreur lors du chargement des machines', err);
@@ -37,10 +37,10 @@ const MachineTable = () => {
     e.preventDefault();
     try {
       if (machineToEdit) {
-        await axios.put(`http://localhost:8080/api/machine/${machineToEdit.id}`, formData);
+        await axios.put(`${process.env.REACT_APP_API_URL}/api/machine/${machineToEdit.id}`, formData);
         alert('Machine modifiée avec succès');
       } else {
-        await axios.post('http://localhost:8080/api/machine', formData);
+        await axios.post(`${process.env.REACT_APP_API_URL}/api/machine`, formData);
         alert('Machine ajoutée avec succès');
       }
       resetForm();
@@ -75,7 +75,7 @@ const MachineTable = () => {
 
   const declasserMachine = async (id) => {
     try {
-      const res = await axios.delete(`http://localhost:8080/api/machine/${id}/declasser`);
+      const res = await axios.delete(`${process.env.REACT_APP_API_URL}/api/machine/${id}/declasser`);
       alert(res.data);
       fetchMachines();
     } catch (err) {

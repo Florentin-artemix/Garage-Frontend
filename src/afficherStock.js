@@ -6,7 +6,7 @@ function AfficherStock(){
     afficherStock();
   },[]);
   const afficherStock=()=>{
-    fetch("http://localhost:8080/api/stock")
+    fetch(`${process.env.REACT_APP_API_URL}/api/stock`)
     .then(res=>res.json())
     .then(data => {setStock(data);console.log(data)})
     .catch(err =>console.log("erreur lors de l'affichage du Stock :",err));

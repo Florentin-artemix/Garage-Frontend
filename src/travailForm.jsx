@@ -22,9 +22,9 @@ function TravailForm() {
   const chargerDonnees = async () => {
     try {
       const [resTravails, resTech, resMachines] = await Promise.all([
-        axios.get("http://localhost:8080/api/travail"),
-        axios.get("http://localhost:8080/api/technicien"),
-        axios.get("http://localhost:8080/api/machine")
+        axios.get(`${process.env.REACT_APP_API_URL}/api/travail`),
+        axios.get(`${process.env.REACT_APP_API_URL}/api/technicien`),
+        axios.get(`${process.env.REACT_APP_API_URL}/api/machine`)
       ]);
       setTravails(resTravails.data);
       setTechniciens(resTech.data);
@@ -73,8 +73,8 @@ function TravailForm() {
       preuvePhotoBase64: formData.preuvePhoto
     };
     const url = travailToEdit
-      ? `http://localhost:8080/api/travail/${travailToEdit.id}`
-      : "http://localhost:8080/api/travail";
+      ? `${process.env.REACT_APP_API_URL}/api/travail/${travailToEdit.id}`
+      : `${process.env.REACT_APP_API_URL}/api/travail`;
     const method = travailToEdit ? 'put' : 'post';
 
     try {
@@ -104,7 +104,7 @@ function TravailForm() {
   const handleDelete = async (id) => {
     if (!window.confirm("Supprimer ce travail ?")) return;
     try {
-      await axios.delete(`http://localhost:8080/api/travail/${id}/desactiver`);
+      await axios.delete(`${process.env.REACT_APP_API_URL}/api/travail/${id}/desactiver`);
       alert("Supprimé avec succès");
       chargerDonnees();
     } catch (err) {

@@ -24,9 +24,9 @@ function EntretienForm() {
   const chargerDonnees = async () => {
     try {
       const [resEntretiens, resTech, resMachines] = await Promise.all([
-        axios.get("http://localhost:8080/api/entretien"),
-        axios.get("http://localhost:8080/api/technicien"),
-        axios.get("http://localhost:8080/api/machine")
+        axios.get(`${process.env.REACT_APP_API_URL}/api/entretien`),
+        axios.get(`${process.env.REACT_APP_API_URL}/api/technicien`),
+        axios.get(`${process.env.REACT_APP_API_URL}/api/machine`)
       ]);
       setEntretiens(resEntretiens.data);
       setTechniciens(resTech.data);
@@ -64,8 +64,8 @@ function EntretienForm() {
     };
 
     const url = entretienToEdit
-      ? `http://localhost:8080/api/entretien/${entretienToEdit.id}`
-      : "http://localhost:8080/api/entretien";
+      ? `${process.env.REACT_APP_API_URL}/api/entretien/${entretienToEdit.id}`
+      : `${process.env.REACT_APP_API_URL}/api/entretien`;
     const method = entretienToEdit ? 'put' : 'post';
 
     try {
@@ -95,7 +95,7 @@ function EntretienForm() {
   const handleDelete = async (id) => {
     if (!window.confirm("Supprimer cet entretien ?")) return;
     try {
-      await axios.delete(`http://localhost:8080/api/entretien/${id}/desactiver`);
+      await axios.delete(`${process.env.REACT_APP_API_URL}/api/entretien/${id}/desactiver`);
       alert("Supprimé avec succès");
       chargerDonnees();
     } catch (err) {

@@ -6,10 +6,10 @@ function AfficherIntervention(){
     afficherIntervention();
   },[]);
   const afficherIntervention=()=>{
-    fetch("http://localhost:8080/api/intervention")
+    fetch(`${process.env.REACT_APP_API_URL}/api/intervention`)
     .then(res=>res.json())
     .then(data => setInterventions(data))
-    .catch(err =>console.log("erreur lors de l'affichage de interventions :",err));;
+    .catch(err =>console.log("erreur lors de l'affichage de interventions :",err));
   };
   
   return(

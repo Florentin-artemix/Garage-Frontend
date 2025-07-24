@@ -6,7 +6,7 @@ function AfficherEntretien(){
     afficherEntretien();
   },[]);
   const afficherEntretien=()=>{
-    fetch("http://localhost:8080/api/entretien")
+    fetch(`${process.env.REACT_APP_API_URL}/api/entretien`)
     .then(res=>res.json())
     .then(data => setEntretien(data))
     .catch(err =>console.log("erreur lors de l'affichage des Entretien :",err));

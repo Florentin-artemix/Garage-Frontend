@@ -23,9 +23,9 @@ function ProduitUtiliserForm() {
   const chargerDonnees = async () => {
     try {
       const [resProduits, resInterventions, resStocks] = await Promise.all([
-        axios.get("http://localhost:8080/api/produit"),
-        axios.get("http://localhost:8080/api/intervention"),
-        axios.get("http://localhost:8080/api/stock")
+        axios.get(`${process.env.REACT_APP_API_URL}/api/produit`),
+        axios.get(`${process.env.REACT_APP_API_URL}/api/intervention`),
+        axios.get(`${process.env.REACT_APP_API_URL}/api/stock`)
       ]);
       setProduitsUtilises(resProduits.data);
       setInterventions(resInterventions.data);
@@ -52,8 +52,8 @@ function ProduitUtiliserForm() {
     };
 
     const url = produitToEdit
-      ? `http://localhost:8080/api/produit/${produitToEdit.id}`
-      : "http://localhost:8080/api/produit";
+      ? `${process.env.REACT_APP_API_URL}/api/produit/${produitToEdit.id}`
+      : `${process.env.REACT_APP_API_URL}/api/produit`;
 
     try {
       if (produitToEdit) {
@@ -98,7 +98,7 @@ function ProduitUtiliserForm() {
   const supprimerProduit = async (id) => {
     if (!window.confirm("Supprimer ce produit utilisé ?")) return;
     try {
-      await axios.delete(`http://localhost:8080/api/produit/${id}/desactiver`);
+      await axios.delete(`${process.env.REACT_APP_API_URL}/api/produit/${id}/desactiver`);
       alert("Produit utilisé supprimé");
       chargerDonnees();
     } catch (err) {

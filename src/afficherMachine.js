@@ -6,7 +6,7 @@ function AfficherMachine(){
     afficherMachine();
   },[]);
   const afficherMachine=()=>{
-    fetch("http://localhost:8080/api/machine")
+    fetch(`${process.env.REACT_APP_API_URL}/api/machine`)
     .then(res=>res.json())
     .then(data => setMachines(data))
     .catch(err =>console.log("erreur lors de l'affichage de machine :",err));

@@ -6,7 +6,7 @@ function AfficherSuivieVidange(){
     afficherSuivie();
   },[]);
   const afficherSuivie=()=>{
-    fetch("http://localhost:8080/api/suivieVidange")
+    fetch(`${process.env.REACT_APP_API_URL}/api/suivieVidange`)
     .then(res=>res.json())
     .then(data => setSuivieVidange(data))
     .catch(err =>console.log("erreur lors de l'affichage des Suivies Vidanges :",err));

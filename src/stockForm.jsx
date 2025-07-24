@@ -21,7 +21,7 @@ function StockForm() {
 
   const chargerStocks = async () => {
     try {
-      const res = await axios.get("http://localhost:8080/api/stock");
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/stock`);
       setStocks(res.data);
     } catch (err) {
       console.error("Erreur chargement stocks :", err);
@@ -47,16 +47,15 @@ function StockForm() {
     };
 
     const url = stockToEdit
-      ? `http://localhost:8080/api/stock/${stockToEdit.id}`
-      : "http://localhost:8080/api/stock";
+      ? `${process.env.REACT_APP_API_URL}/api/stock/${stockToEdit.id}`
+      : `${process.env.REACT_APP_API_URL}/api/stock`;
 
     try {
       if (stockToEdit) {
-        const response= await axios.put(url, dataToSend);
+        const response = await axios.put(url, dataToSend);
         alert(response.data);
-       
       } else {
-        const response=await axios.post(url, dataToSend);
+        const response = await axios.post(url, dataToSend);
         alert(response.data);
       }
       resetForm();
@@ -84,7 +83,7 @@ function StockForm() {
   const supprimerStock = async (id) => {
     if (!window.confirm("Confirmer la suppression ?")) return;
     try {
-      const response=await axios.delete(`http://localhost:8080/api/stock/${id}/desactiver`);
+      const response = await axios.delete(`${process.env.REACT_APP_API_URL}/api/stock/${id}/desactiver`);
       alert(response.data);
       chargerStocks();
     } catch (err) {

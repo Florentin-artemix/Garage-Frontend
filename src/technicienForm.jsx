@@ -19,7 +19,7 @@ function TechnicienForm() {
 
   const chargerTechniciens = async () => {
     try {
-      const res = await axios.get("http://localhost:8080/api/technicien");
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/technicien`);
       setTechniciens(res.data);
     } catch (err) {
       console.error("Erreur chargement techniciens :", err);
@@ -46,8 +46,8 @@ function TechnicienForm() {
     e.preventDefault();
 
     const url = technicienToEdit
-      ? `http://localhost:8080/api/technicien/${technicienToEdit.id}`
-      : "http://localhost:8080/api/technicien";
+      ? `${process.env.REACT_APP_API_URL}/api/technicien/${technicienToEdit.id}`
+      : `${process.env.REACT_APP_API_URL}/api/technicien`;
     const method = technicienToEdit ? 'put' : 'post';
 
     try {
@@ -75,7 +75,7 @@ function TechnicienForm() {
   const handleDelete = async (id) => {
     if (!window.confirm("Confirmer la suppression ?")) return;
     try {
-      await axios.delete(`http://localhost:8080/api/technicien/${id}/desactiver`);
+      await axios.delete(`${process.env.REACT_APP_API_URL}/api/technicien/${id}/desactiver`);
       alert("Supprimé avec succès");
       chargerTechniciens();
     } catch (err) {

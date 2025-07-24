@@ -6,10 +6,10 @@ function AfficherTravail(){
     afficherTravail();
   },[]);
   const afficherTravail=()=>{
-    fetch("http://localhost:8080/api/travail")
+    fetch(`${process.env.REACT_APP_API_URL}/api/travail`)
     .then(res=>res.json())
     .then(data => setTravails(data))
-    .catch(err =>console.log("erreur lors de l'affichage de travail :",err));;
+    .catch(err =>console.log("erreur lors de l'affichage de travail :",err));
   };
   
   return(

@@ -20,18 +20,18 @@ function InterventionForm() {
 
   useEffect(() => {
     afficherIntervention();
-    fetch("http://localhost:8080/api/technicien")
+    fetch(`${process.env.REACT_APP_API_URL}/api/technicien`)
       .then(res => res.json())
       .then(setTechniciens)
       .catch(err => console.error("Erreur chargement techniciens :", err));
-    fetch("http://localhost:8080/api/machine")
+    fetch(`${process.env.REACT_APP_API_URL}/api/machine`)
       .then(res => res.json())
       .then(setMachines)
       .catch(err => console.error("Erreur chargement machines :", err));
   }, []);
 
   const afficherIntervention = () => {
-    fetch("http://localhost:8080/api/intervention")
+    fetch(`${process.env.REACT_APP_API_URL}/api/intervention`)
       .then(res => res.json())
       .then(setInterventions)
       .catch(err => console.error("Erreur lors de l'affichage :", err));
@@ -73,8 +73,8 @@ function InterventionForm() {
     };
 
     const url = interventionToEdit
-      ? `http://localhost:8080/api/intervention/${interventionToEdit.id}`
-      : "http://localhost:8080/api/intervention";
+      ? `${process.env.REACT_APP_API_URL}/api/intervention/${interventionToEdit.id}`
+      : `${process.env.REACT_APP_API_URL}/api/intervention`;
 
     const method = interventionToEdit ? 'PUT' : 'POST';
 
@@ -138,7 +138,7 @@ function InterventionForm() {
   const supprimerIntervention = async (id) => {
     if (!window.confirm("Supprimer cette intervention ?")) return;
     try {
-      const res = await fetch(`http://localhost:8080/api/intervention/${id}/desactiver`, {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/intervention/${id}/desactiver`, {
         method: 'DELETE',
       });
       if (res.ok) {

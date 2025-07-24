@@ -12,7 +12,7 @@ function Historique() {
 
   const chargerHistorique = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/api/historique");
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/historique`);
       setHistoriques(response.data);
     } catch (error) {
       console.error("Erreur lors du chargement de l'historique :", error);
