@@ -87,7 +87,6 @@ function Dashboard() {
   const nbInterventionsValidees = interventions.filter(i => i.validationChefGarage === true).length;
   const nbInterventionsInvalidees = interventions.filter(i => i.validationChefGarage === false);
 
-
   function validerIntervention(id) {
     fetch(`${process.env.REACT_APP_API_URL}/api/intervention/${id}/valider`, { method: "PUT" })
       .then(() => {
@@ -122,7 +121,7 @@ function Dashboard() {
           <li>🗑️ Machines décl./hors-service : <b>{machineDeclasee}</b></li>
         </ul>
       </div>
- 
+
       <div className="table-wrapper">
         <h3 className="section-title">✔ Interventions à Valider</h3>
         <table className="data-table">
@@ -145,9 +144,8 @@ function Dashboard() {
             {nbInterventionsInvalidees.length === 0 ? (
               <tr><td colSpan="11" style={{ textAlign: "center" }}>Aucune intervention à valider</td></tr>
             ) : (
-              nbInterventionsInvalidees.map((m, i) => (
-                <tr key={i}>
-                  <td>{i + 1}</td>
+              nbInterventionsInvalidees.map(m => (
+                <tr key={m.id}>
                   <td>{m.nomTechnicien}</td>
                   <td>{m.prenomTechnicien}</td>
                   <td>{m.modeleMachine}</td>
@@ -157,13 +155,13 @@ function Dashboard() {
                   <td>{m.photoIntervention ? <img src={`data:image/jpeg;base64,${m.photoIntervention}`} alt="preuve" width="50" /> : "Aucune"}</td>
                   <td>{m.signatures ? <img src={`data:image/jpeg;base64,${m.signatures}`} alt="signature" width="50" /> : "Aucune"}</td>
                   <td>{m.dateIntervention}</td>
-                  <td><button onClick={()=> {validerIntervention(m.id)}}>Valider</button></td>
+                  <td><button onClick={() => { validerIntervention(m.id) }}>Valider</button></td>
                 </tr>
               ))
             )}
           </tbody>
         </table>
-      </div>     
+      </div>
 
       <div className="table-wrapper">
         <h3 className="section-title">🗑️ Techniciens déclassés</h3>
@@ -182,9 +180,8 @@ function Dashboard() {
             {techniciensDeclassees.length === 0 ? (
               <tr><td colSpan="6" style={{ textAlign: "center" }}>Aucun technicien déclassé</td></tr>
             ) : (
-              techniciensDeclassees.map((t, i) => (
-                <tr key={i}>
-                  <td>{i + 1}</td>
+              techniciensDeclassees.map(t => (
+                <tr key={t.id}>
                   <td>{t.nom}</td>
                   <td>{t.postNom}</td>
                   <td>{t.prenom}</td>
@@ -215,8 +212,8 @@ function Dashboard() {
             {machinesDeclassees.length === 0 ? (
               <tr><td colSpan="7" style={{ textAlign: "center" }}>Aucune machine déclassée</td></tr>
             ) : (
-              machinesDeclassees.map((m, i) => (
-                <tr key={i}>
+              machinesDeclassees.map(m => (
+                <tr key={m.id}>
                   <td>{m.type}</td>
                   <td>{m.modele}</td>
                   <td>{m.numeroImmatriculation}</td>
@@ -242,171 +239,28 @@ function Dashboard() {
               <th>Modèle</th>
               <th>Type</th>
               <th>Description</th>
-              <th>Km/Heure</th>
-              <th>Preuve Photo</th>
-              <th>Signature</th>
-              <th>Date</th>
-              <th>Validée</th>
-            </tr>
-          </thead>
-          <tbody>
-            {interventionsDeclassees.length === 0 ? (
-              <tr><td colSpan="11" style={{ textAlign: "center" }}>Aucune intervention déclassée</td></tr>
-            ) : (
-              interventionsDeclassees.map((m, i) => (
-                <tr key={i}>
-                  <td>{i + 1}</td>
-                  <td>{m.nomTechnicien}</td>
-                  <td>{m.prenomTechnicien}</td>
-                  <td>{m.modeleMachine}</td>
-                  <td>{m.typeMachine}</td>
-                  <td>{m.description}</td>
-                  <td>{m.kmOuHeureMoteur}</td>
-                  <td>{m.photoIntervention ? <img src={`data:image/jpeg;base64,${m.photoIntervention}`} alt="preuve" width="50" /> : "Aucune"}</td>
-                  <td>{m.signatures ? <img src={`data:image/jpeg;base64,${m.signatures}`} alt="signature" width="50" /> : "Aucune"}</td>
-                  <td>{m.dateIntervention}</td>
-                  <td>{m.validationChefGarage ? "✅" : "❌"}</td>
-                </tr>
-              ))
-            )}
-          </tbody>
-        </table>
-      </div>
-      <div className="table-wrapper">
-        <h3 className="section-title">📜 Historique des modifications (2 derniers jours)</h3>
-        <table className="data-table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Entité</th>
-              <th>ID</th>
-              <th>Champ</th>
-              <th>Ancienne valeur</th>
-              <th>Nouvelle valeur</th>
-              <th>Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            {historiques.length === 0 ? (
-              <tr><td colSpan="7" style={{ textAlign: "center" }}>Aucune modification récente</td></tr>
-            ) : (
-              historiques.map((h, i) => (
-                <tr key={i}>
-                  <td>{i + 1}</td>
-                  <td>{h.entite}</td>
-                  <td>{h.entiteId}</td>
-                  <td>{h.champModifie}</td>
-                  <td>{h.ancienneValeur}</td>
-                  <td>{h.nouvelleValeur}</td>
-                  <td>{h.dateModification}</td>
-                </tr>
-              ))
-            )}
-          </tbody>
-        </table>
-      </div>
-
-      <div className="table-wrapper">
-        <h3 className="section-title">🗑️ Techniciens déclassés</h3>
-        <table className="data-table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Nom</th>
-              <th>Post-nom</th>
-              <th>Prénom</th>
-              <th>Âge</th>
-              <th>Rôle</th>
-            </tr>
-          </thead>
-          <tbody>
-            {techniciensDeclassees.length === 0 ? (
-              <tr><td colSpan="6" style={{ textAlign: "center" }}>Aucun technicien déclassé</td></tr>
-            ) : (
-              techniciensDeclassees.map((t, i) => (
-                <tr key={i}>
-                  <td>{i + 1}</td>
-                  <td>{t.nom}</td>
-                  <td>{t.postNom}</td>
-                  <td>{t.prenom}</td>
-                  <td>{t.age}</td>
-                  <td>{t.role}</td>
-                </tr>
-              ))
-            )}
-          </tbody>
-        </table>
-      </div>
-
-      <div className="table-wrapper">
-        <h3 className="section-title">🗑️ Machines déclassées</h3>
-        <table className="data-table">
-          <thead>
-            <tr>
-              <th>Type</th>
-              <th>Modèle</th>
-              <th>Immatriculation</th>
-              <th>Date mise en service</th>
-              <th>Heure moteur</th>
-              <th>Date vidange</th>
-              <th>Statut</th>
-            </tr>
-          </thead>
-          <tbody>
-            {machinesDeclassees.length === 0 ? (
-              <tr><td colSpan="7" style={{ textAlign: "center" }}>Aucune machine déclassée</td></tr>
-            ) : (
-              machinesDeclassees.map((m, i) => (
-                <tr key={i}>
-                  <td>{m.type}</td>
-                  <td>{m.modele}</td>
-                  <td>{m.numeroImmatriculation}</td>
-                  <td>{m.dateMiseEnService}</td>
-                  <td>{m.heureServiceMoteur}</td>
-                  <td>{m.dateProchainVidange}</td>
-                  <td>{m.statutActuel}</td>
-                </tr>
-              ))
-            )}
-          </tbody>
-        </table>
-      </div>
-
-      <div className="table-wrapper">
-        <h3 className="section-title">🗑️ Interventions déclassées</h3>
-        <table className="data-table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Nom</th>
-              <th>Prénom</th>
-              <th>Modèle</th>
-              <th>Type</th>
               <th>Description</th>
               <th>Km/Heure</th>
               <th>Preuve Photo</th>
               <th>Signature</th>
               <th>Date</th>
-              <th>Validée</th>
             </tr>
           </thead>
           <tbody>
             {interventionsDeclassees.length === 0 ? (
-              <tr><td colSpan="11" style={{ textAlign: "center" }}>Aucune intervention déclassée</td></tr>
+              <tr><td colSpan="12" style={{ textAlign: "center" }}>Aucune intervention déclassée</td></tr>
             ) : (
-              interventionsDeclassees.map((m, i) => (
-                <tr key={i}>
-                  <td>{i + 1}</td>
-                  <td>{m.nomTechnicien}</td>
-                  <td>{m.prenomTechnicien}</td>
-                  <td>{m.modeleMachine}</td>
-                  <td>{m.typeMachine}</td>
-                  <td>{m.description}</td>
-                  <td>{m.kmOuHeureMoteur}</td>
-                  <td>{m.photoIntervention ? <img src={`data:image/jpeg;base64,${m.photoIntervention}`} alt="preuve" width="50" /> : "Aucune"}</td>
-                  <td>{m.signatures ? <img src={`data:image/jpeg;base64,${m.signatures}`} alt="signature" width="50" /> : "Aucune"}</td>
-                  <td>{m.dateIntervention}</td>
-                  <td>{m.validationChefGarage ? "✅" : "❌"}</td>
+              interventionsDeclassees.map(i => (
+                <tr key={i.id}>
+                  <td>{i.nomTechnicien}</td>
+                  <td>{i.prenomTechnicien}</td>
+                  <td>{i.modeleMachine}</td>
+                  <td>{i.typeMachine}</td>
+                  <td>{i.description}</td>
+                  <td>{i.kmOuHeureMoteur}</td>
+                  <td>{i.photoIntervention ? <img src={`data:image/jpeg;base64,${i.photoIntervention}`} alt="preuve" width="50" /> : "Aucune"}</td>
+                  <td>{i.signatures ? <img src={`data:image/jpeg;base64,${i.signatures}`} alt="signature" width="50" /> : "Aucune"}</td>
+                  <td>{i.dateIntervention}</td>
                 </tr>
               ))
             )}
@@ -415,28 +269,114 @@ function Dashboard() {
       </div>
 
       <div className="table-wrapper">
-        <h3 className="section-title">🗑️ Produits utilisés déclassés</h3>
+        <h3 className="section-title">🗑️ Entretiens déclassés</h3>
         <table className="data-table">
           <thead>
             <tr>
-              <th>#</th>
-              <th>Nom Technicien</th>
-              <th>Type Intervention</th>
-              <th>Produit</th>
+              <th>Type</th>
+              <th>Modèle</th>
+              <th>Date entretien</th>
+              <th>Description</th>
+              <th>Photo</th>
+            </tr>
+          </thead>
+          <tbody>
+            {entretiensDeclassees.length === 0 ? (
+              <tr><td colSpan="5" style={{ textAlign: "center" }}>Aucun entretien déclassé</td></tr>
+            ) : (
+              entretiensDeclassees.map(e => (
+                <tr key={e.id}>
+                  <td>{e.typeMachine}</td>
+                  <td>{e.modeleMachine}</td>
+                  <td>{e.dateEntretien}</td>
+                  <td>{e.description}</td>
+                  <td>{e.photoEntretien ? <img src={`data:image/jpeg;base64,${e.photoEntretien}`} alt="entretien" width="50" /> : "Aucune"}</td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
+
+      <div className="table-wrapper">
+        <h3 className="section-title">🗑️ Travaux déclassés</h3>
+        <table className="data-table">
+          <thead>
+            <tr>
+              <th>Technicien</th>
+              <th>Machine</th>
+              <th>Heure début</th>
+              <th>Heure fin</th>
+              <th>Durée (h)</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            {travauxDeclassees.length === 0 ? (
+              <tr><td colSpan="6" style={{ textAlign: "center" }}>Aucun travail déclassé</td></tr>
+            ) : (
+              travauxDeclassees.map(t => (
+                <tr key={t.id}>
+                  <td>{t.nomTechnicien} {t.prenomTechnicien}</td>
+                  <td>{t.modeleMachine} ({t.typeMachine})</td>
+                  <td>{t.heureDebut}</td>
+                  <td>{t.heureFin}</td>
+                  <td>{t.heureTravail}</td>
+                  <td>{t.description}</td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
+
+      <div className="table-wrapper">
+        <h3 className="section-title">🗑️ Produits déclassés</h3>
+        <table className="data-table">
+          <thead>
+            <tr>
+              <th>Nom produit</th>
               <th>Quantité</th>
+              <th>Description</th>
             </tr>
           </thead>
           <tbody>
             {produitsDeclassees.length === 0 ? (
-              <tr><td colSpan="5" style={{ textAlign: "center" }}>Aucun produit utilisé déclassé</td></tr>
+              <tr><td colSpan="3" style={{ textAlign: "center" }}>Aucun produit déclassé</td></tr>
             ) : (
-              produitsDeclassees.map((p, i) => (
-                <tr key={i}>
-                  <td>{i + 1}</td>
-                  <td>{p.nomTechnicien}</td>
-                  <td>{p.typeIntervention}</td>
+              produitsDeclassees.map(p => (
+                <tr key={p.id}>
                   <td>{p.nomProduit}</td>
-                  <td>{p.quantiteUtilisee}</td>
+                  <td>{p.quantite}</td>
+                  <td>{p.description}</td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
+
+      <div className="table-wrapper">
+        <h3 className="section-title">🗑️ Suivie Vidange déclassés</h3>
+        <table className="data-table">
+          <thead>
+            <tr>
+              <th>Machine</th>
+              <th>Date dernière vidange</th>
+              <th>Date prochaine vidange</th>
+              <th>Kilométrage actuel</th>
+            </tr>
+          </thead>
+          <tbody>
+            {suivieVidangeDeclassees.length === 0 ? (
+              <tr><td colSpan="4" style={{ textAlign: "center" }}>Aucun suivie vidange déclassé</td></tr>
+            ) : (
+              suivieVidangeDeclassees.map(sv => (
+                <tr key={sv.id}>
+                  <td>{sv.modeleMachine} ({sv.typeMachine})</td>
+                  <td>{sv.dateDerniereVidange}</td>
+                  <td>{sv.dateProchaineVidange}</td>
+                  <td>{sv.kilometrageActuel}</td>
                 </tr>
               ))
             )}
@@ -449,33 +389,26 @@ function Dashboard() {
         <table className="data-table">
           <thead>
             <tr>
-              <th>#</th>
               <th>Produit</th>
               <th>Quantité</th>
-              <th>Fournisseur</th>
-              <th>Prix Unitaire</th>
-              <th>Seuil</th>
+              <th>Date péremption</th>
             </tr>
           </thead>
           <tbody>
             {stocksDeclassees.length === 0 ? (
-              <tr><td colSpan="6" style={{ textAlign: "center" }}>Aucun stock déclassé</td></tr>
+              <tr><td colSpan="3" style={{ textAlign: "center" }}>Aucun stock déclassé</td></tr>
             ) : (
-              stocksDeclassees.map((s, i) => (
-                <tr key={i}>
-                  <td>{i + 1}</td>
+              stocksDeclassees.map(s => (
+                <tr key={s.id}>
                   <td>{s.nomProduit}</td>
                   <td>{s.quantite}</td>
-                  <td>{s.fournisseur}</td>
-                  <td>{s.prixUnitaire}</td>
-                  <td>{s.seuilAlerte}</td>
+                  <td>{s.datePeremption}</td>
                 </tr>
               ))
             )}
           </tbody>
         </table>
       </div>
-      {/* Tu peux ajouter ici tous les tableaux comme tu les as faits (techniciens déclassés, interventions, etc.) */}
     </div>
   );
 }
@@ -483,8 +416,8 @@ function Dashboard() {
 function Kpi({ label, value }) {
   return (
     <div className="kpi-card">
-      <div style={{ fontSize: 22, fontWeight: 'bold' }}>{value}</div>
-      <div style={{ fontSize: 14 }}>{label}</div>
+      <h3>{label}</h3>
+      <p>{value}</p>
     </div>
   );
 }
