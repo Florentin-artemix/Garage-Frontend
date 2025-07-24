@@ -52,7 +52,7 @@ function ProduitUtiliserForm() {
     };
 
     const url = produitToEdit
-      ? `${process.env.REACT_APP_API_URL}/api/produit/${produitToEdit.id}`
+       ? `${process.env.REACT_APP_API_URL}/api/produit/${produitToEdit.id}`
       : `${process.env.REACT_APP_API_URL}/api/produit`;
 
     try {
@@ -98,7 +98,7 @@ function ProduitUtiliserForm() {
   const supprimerProduit = async (id) => {
     if (!window.confirm("Supprimer ce produit utilisé ?")) return;
     try {
-      await axios.delete(`${process.env.REACT_APP_API_URL}/api/produit/${id}/desactiver`);
+       await axios.delete(`${process.env.REACT_APP_API_URL}/api/produit/${id}/desactiver`);
       alert("Produit utilisé supprimé");
       chargerDonnees();
     } catch (err) {

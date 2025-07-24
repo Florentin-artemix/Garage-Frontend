@@ -6,7 +6,7 @@ function AfficherTechnicien(){
     afficherTechnicien();
   },[]);
   const afficherTechnicien=()=>{
-    fetch(`${process.env.REACT_APP_API_URL}/api/technicien`)
+     fetch(`${process.env.REACT_APP_API_URL}/api/technicien`)
     .then(res=>res.json())
     .then(data => setTechniciens(data))
     .catch(err =>console.log("erreur lors de l'affichage de Technicien :",err));

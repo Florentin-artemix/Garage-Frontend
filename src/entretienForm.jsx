@@ -64,7 +64,7 @@ function EntretienForm() {
     };
 
     const url = entretienToEdit
-      ? `${process.env.REACT_APP_API_URL}/api/entretien/${entretienToEdit.id}`
+       ? `${process.env.REACT_APP_API_URL}/api/entretien/${entretienToEdit.id}`
       : `${process.env.REACT_APP_API_URL}/api/entretien`;
     const method = entretienToEdit ? 'put' : 'post';
 

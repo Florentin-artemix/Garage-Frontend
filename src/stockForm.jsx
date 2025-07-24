@@ -47,15 +47,16 @@ function StockForm() {
     };
 
     const url = stockToEdit
-      ? `${process.env.REACT_APP_API_URL}/api/stock/${stockToEdit.id}`
+       ? `${process.env.REACT_APP_API_URL}/api/stock/${stockToEdit.id}`
       : `${process.env.REACT_APP_API_URL}/api/stock`;
 
     try {
       if (stockToEdit) {
-        const response = await axios.put(url, dataToSend);
+        const response= await axios.put(url, dataToSend);
         alert(response.data);
+       
       } else {
-        const response = await axios.post(url, dataToSend);
+        const response=await axios.post(url, dataToSend);
         alert(response.data);
       }
       resetForm();

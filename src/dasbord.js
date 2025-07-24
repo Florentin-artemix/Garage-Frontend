@@ -89,7 +89,7 @@ function Dashboard() {
 
 
   function validerIntervention(id) {
-    fetch(`${process.env.REACT_APP_API_URL}/api/intervention/${id}/valider`, { method: "PUT" })
+     fetch(`${process.env.REACT_APP_API_URL}/api/intervention/${id}/valider`, { method: "PUT" })
       .then(() => {
         fetch(`${process.env.REACT_APP_API_URL}/api/intervention`).then(res => res.json()).then(setInterventions);
       })
@@ -475,6 +475,7 @@ function Dashboard() {
           </tbody>
         </table>
       </div>
+      {/* Tu peux ajouter ici tous les tableaux comme tu les as faits (techniciens déclassés, interventions, etc.) */}
     </div>
   );
 }

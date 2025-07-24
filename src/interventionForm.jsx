@@ -73,7 +73,7 @@ function InterventionForm() {
     };
 
     const url = interventionToEdit
-      ? `${process.env.REACT_APP_API_URL}/api/intervention/${interventionToEdit.id}`
+       ? `${process.env.REACT_APP_API_URL}/api/intervention/${interventionToEdit.id}`
       : `${process.env.REACT_APP_API_URL}/api/intervention`;
 
     const method = interventionToEdit ? 'PUT' : 'POST';
@@ -138,7 +138,7 @@ function InterventionForm() {
   const supprimerIntervention = async (id) => {
     if (!window.confirm("Supprimer cette intervention ?")) return;
     try {
-      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/intervention/${id}/desactiver`, {
+       const res = await fetch(`${process.env.REACT_APP_API_URL}/api/intervention/${id}/desactiver`, {
         method: 'DELETE',
       });
       if (res.ok) {
