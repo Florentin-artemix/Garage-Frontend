@@ -145,9 +145,9 @@ function Dashboard() {
             {nbInterventionsInvalidees.length === 0 ? (
               <tr><td colSpan="11" style={{ textAlign: "center" }}>Aucune intervention à valider</td></tr>
             ) : (
-              nbInterventionsInvalidees.map((m, i) => (
-                <tr key={i}>
-                  <td>{i + 1}</td>
+              nbInterventionsInvalidees.map((m) => (
+                <tr key={m.id || m._id}>
+                  <td>{m.id || m._id}</td>
                   <td>{m.nomTechnicien}</td>
                   <td>{m.prenomTechnicien}</td>
                   <td>{m.modeleMachine}</td>
@@ -182,9 +182,9 @@ function Dashboard() {
             {techniciensDeclassees.length === 0 ? (
               <tr><td colSpan="6" style={{ textAlign: "center" }}>Aucun technicien déclassé</td></tr>
             ) : (
-              techniciensDeclassees.map((t, i) => (
-                <tr key={i}>
-                  <td>{i + 1}</td>
+              techniciensDeclassees.map((t) => (
+                <tr key={t.id || t._id}>
+                  <td>{t.id || t._id}</td>
                   <td>{t.nom}</td>
                   <td>{t.postNom}</td>
                   <td>{t.prenom}</td>
@@ -215,8 +215,8 @@ function Dashboard() {
             {machinesDeclassees.length === 0 ? (
               <tr><td colSpan="7" style={{ textAlign: "center" }}>Aucune machine déclassée</td></tr>
             ) : (
-              machinesDeclassees.map((m, i) => (
-                <tr key={i}>
+              machinesDeclassees.map((m) => (
+                <tr key={m.id || m._id}>
                   <td>{m.type}</td>
                   <td>{m.modele}</td>
                   <td>{m.numeroImmatriculation}</td>
@@ -253,9 +253,9 @@ function Dashboard() {
             {interventionsDeclassees.length === 0 ? (
               <tr><td colSpan="11" style={{ textAlign: "center" }}>Aucune intervention déclassée</td></tr>
             ) : (
-              interventionsDeclassees.map((m, i) => (
-                <tr key={i}>
-                  <td>{i + 1}</td>
+              interventionsDeclassees.map((m) => (
+                <tr key={m.id || m._id}>
+                  <td>{m.id || m._id}</td>
                   <td>{m.nomTechnicien}</td>
                   <td>{m.prenomTechnicien}</td>
                   <td>{m.modeleMachine}</td>
@@ -290,9 +290,9 @@ function Dashboard() {
             {historiques.length === 0 ? (
               <tr><td colSpan="7" style={{ textAlign: "center" }}>Aucune modification récente</td></tr>
             ) : (
-              historiques.map((h, i) => (
-                <tr key={i}>
-                  <td>{i + 1}</td>
+              historiques.map((h) => (
+                <tr key={h.id || h._id}>
+                  <td>{h.id || h._id}</td>
                   <td>{h.entite}</td>
                   <td>{h.entiteId}</td>
                   <td>{h.champModifie}</td>
@@ -323,9 +323,9 @@ function Dashboard() {
             {techniciensDeclassees.length === 0 ? (
               <tr><td colSpan="6" style={{ textAlign: "center" }}>Aucun technicien déclassé</td></tr>
             ) : (
-              techniciensDeclassees.map((t, i) => (
-                <tr key={i}>
-                  <td>{i + 1}</td>
+              techniciensDeclassees.map((t) => (
+                <tr key={t.id || t._id}>
+                  <td>{t.id || t._id}</td>
                   <td>{t.nom}</td>
                   <td>{t.postNom}</td>
                   <td>{t.prenom}</td>
@@ -356,8 +356,8 @@ function Dashboard() {
             {machinesDeclassees.length === 0 ? (
               <tr><td colSpan="7" style={{ textAlign: "center" }}>Aucune machine déclassée</td></tr>
             ) : (
-              machinesDeclassees.map((m, i) => (
-                <tr key={i}>
+              machinesDeclassees.map((m) => (
+                <tr key={m.id || m._id}>
                   <td>{m.type}</td>
                   <td>{m.modele}</td>
                   <td>{m.numeroImmatriculation}</td>
@@ -394,9 +394,9 @@ function Dashboard() {
             {interventionsDeclassees.length === 0 ? (
               <tr><td colSpan="11" style={{ textAlign: "center" }}>Aucune intervention déclassée</td></tr>
             ) : (
-              interventionsDeclassees.map((m, i) => (
-                <tr key={i}>
-                  <td>{i + 1}</td>
+              interventionsDeclassees.map((m) => (
+                <tr key={m.id || m._id}>
+                  <td>{m.id || m._id}</td>
                   <td>{m.nomTechnicien}</td>
                   <td>{m.prenomTechnicien}</td>
                   <td>{m.modeleMachine}</td>
@@ -430,9 +430,9 @@ function Dashboard() {
             {produitsDeclassees.length === 0 ? (
               <tr><td colSpan="5" style={{ textAlign: "center" }}>Aucun produit utilisé déclassé</td></tr>
             ) : (
-              produitsDeclassees.map((p, i) => (
-                <tr key={i}>
-                  <td>{i + 1}</td>
+              produitsDeclassees.map((p) => (
+                <tr key={p.id || p._id}>
+                  <td>{p.id || p._id}</td>
                   <td>{p.nomTechnicien}</td>
                   <td>{p.typeIntervention}</td>
                   <td>{p.nomProduit}</td>
@@ -461,9 +461,9 @@ function Dashboard() {
             {stocksDeclassees.length === 0 ? (
               <tr><td colSpan="6" style={{ textAlign: "center" }}>Aucun stock déclassé</td></tr>
             ) : (
-              stocksDeclassees.map((s, i) => (
-                <tr key={i}>
-                  <td>{i + 1}</td>
+              stocksDeclassees.map((s) => (
+                <tr key={s.id || s._id}>
+                  <td>{s.id || s._id}</td>
                   <td>{s.nomProduit}</td>
                   <td>{s.quantite}</td>
                   <td>{s.fournisseur}</td>
