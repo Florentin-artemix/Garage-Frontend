@@ -28,7 +28,7 @@ function Login() {
         const role = userDoc.data().role;
 
         if (role === 'chef') {
-          navigate('/chef/dashboard');
+          navigate('/chef/accueil');
         } else if (role === 'technicien') {
           navigate('/technicien/accueil');
         } else {
